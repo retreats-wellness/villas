@@ -10,7 +10,6 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body { font-family: 'Barlow', sans-serif; font-weight: 300; background: #ffffff; color: #0a0a0a; overflow-x: hidden; }
 :root { --black: #0a0a0a; --white: #ffffff; --gold: #c9a84c; --gold-light: #e8d5a0; --gray-line: #e0e0e0; --gray-text: #555555; --off-white: #f7f5f2; }
-
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 3rem; transition: background 0.3s; }
 .nav.dark { background: rgba(10,10,10,0.96); backdrop-filter: blur(10px); }
 .nav.light { background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); }
@@ -29,12 +28,10 @@ body { font-family: 'Barlow', sans-serif; font-weight: 300; background: #ffffff;
 .btn-ghost-dark { border-color: rgba(0,0,0,0.25); color: rgba(0,0,0,0.6); } .btn-ghost-dark:hover { border-color: var(--black); color: var(--black); }
 .btn-nav { border: 1px solid var(--white); color: var(--white); padding: 0.5rem 1.2rem; } .btn-nav:hover { background: var(--white); color: var(--black); }
 .nav.light .btn-nav { border-color: var(--black); color: var(--black); } .nav.light .btn-nav:hover { background: var(--black); color: var(--white); }
-
 .marquee { background: var(--gold); padding: 0.85rem 0; overflow: hidden; white-space: nowrap; }
 .marquee-track { display: inline-flex; animation: marquee-scroll 28s linear infinite; }
 .marquee-track span { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--black); padding: 0 2rem; }
 @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
 .section { padding: 7rem 3rem; }
 .section-white { background: var(--white); color: var(--black); }
 .section-offwhite { background: var(--off-white); color: var(--black); }
@@ -51,80 +48,38 @@ body { font-family: 'Barlow', sans-serif; font-weight: 300; background: #ffffff;
 .inner-mid { max-width: 920px; margin: 0 auto; }
 .inner-narrow { max-width: 780px; margin: 0 auto; }
 
-/* ── HERO: Full bleed image with dark overlay ── */
+/* ── HERO: light/white with golden text ── */
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 3rem 6rem;
+  justify-content: center;
+  padding: 0 3rem;
   overflow: hidden;
+  background: #faf8f4;
 }
-.hero-bg {
+/* decorative background image — very faint on right side */
+.hero-bg-img {
   position: absolute;
-  inset: 0;
-  background-image: url('12019-sea-2052650.jpg');
+  top: 0; right: 0;
+  width: 55%;
+  height: 100%;
+  background-image: url('sunset.jpg');
   background-size: cover;
-  background-position: center 40%;
-  z-index: 0;
+  background-position: center left;
+  opacity: 0.18;
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,1) 100%);
 }
-/* Ken Burns slow zoom */
-.hero-bg { animation: ken-burns 18s ease-in-out infinite alternate; }
-@keyframes ken-burns {
-  from { transform: scale(1); }
-  to   { transform: scale(1.06); }
-}
-/* gradient overlay — dark at bottom for text legibility, lighter at top */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.15) 0%,
-    rgba(0,0,0,0.25) 40%,
-    rgba(0,0,0,0.72) 80%,
-    rgba(0,0,0,0.85) 100%
-  );
-  z-index: 1;
-}
-.hero-content { position: relative; z-index: 2; max-width: 820px; }
+.hero-content { position: relative; z-index: 2; max-width: 780px; }
 .hero-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; opacity: 0; animation: hero-up 0.8s 0.2s forwards; }
-.hero-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(4.5rem, 12vw, 11rem); line-height: 0.85; letter-spacing: -0.01em; text-transform: uppercase; color: var(--white); margin-bottom: 1.5rem; opacity: 0; animation: hero-up 0.8s 0.35s forwards; }
+.hero-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(5rem, 14vw, 13rem); line-height: 0.85; letter-spacing: -0.01em; text-transform: uppercase; color: var(--black); margin-bottom: 1.5rem; opacity: 0; animation: hero-up 0.8s 0.35s forwards; }
 .hero-title .gold { color: var(--gold); }
-.hero-subtitle { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1rem, 1.8vw, 1.3rem); color: rgba(255,255,255,0.75); margin-bottom: 1.2rem; max-width: 520px; opacity: 0; animation: hero-up 0.8s 0.5s forwards; }
+.hero-subtitle { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1rem, 1.8vw, 1.3rem); color: rgba(0,0,0,0.55); margin-bottom: 1.2rem; max-width: 520px; opacity: 0; animation: hero-up 0.8s 0.5s forwards; }
 .hero-divider { width: 60px; height: 2px; background: var(--gold); margin: 1.8rem 0; opacity: 0; animation: hero-up 0.8s 0.7s forwards; }
 .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: hero-up 0.8s 0.95s forwards; }
 @keyframes hero-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-/* scroll cue arrow */
-.hero-scroll-cue {
-  position: absolute;
-  bottom: 2.5rem;
-  right: 3rem;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  opacity: 0;
-  animation: hero-up 1s 1.4s forwards;
-}
-.hero-scroll-cue span {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  writing-mode: vertical-rl;
-}
-.hero-scroll-line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-  animation: scroll-line 1.8s ease-in-out infinite;
-}
-@keyframes scroll-line { 0%,100%{opacity:0.4;transform:scaleY(1)translateY(0)} 50%{opacity:1;transform:scaleY(1.2)translateY(6px)} }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
 .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--gray-line); margin-top: 3rem; }
@@ -132,67 +87,24 @@ body { font-family: 'Barlow', sans-serif; font-weight: 300; background: #ffffff;
 .card:hover { border-top-color: var(--gold); }
 .card-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
 .card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1; margin-bottom: 1rem; color: var(--black); }
-
-/* ── IMAGE STRIP between sections ── */
-.img-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  height: 320px;
-  gap: 2px;
-}
-.img-strip-item {
-  overflow: hidden;
-  position: relative;
-}
-.img-strip-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.7s ease;
-}
-.img-strip-item:hover img { transform: scale(1.05); }
-
-/* ── FULL BLEED image section ── */
-.img-full {
-  height: 480px;
-  overflow: hidden;
-  position: relative;
-}
-.img-full img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 55%;
-  display: block;
-}
-.img-full-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(0,0,0,0.55) 0%, transparent 60%);
-}
-
 .testimonial { padding: 7rem 3rem; text-align: center; position: relative; overflow: hidden; background-size: cover; background-position: center; background-color: var(--black); }
 .testimonial::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
 .testimonial-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
 .testimonial-quote { font-family: 'EB Garamond', serif; font-style: italic; font-size: clamp(1.1rem, 2.2vw, 1.6rem); line-height: 1.7; color: var(--white); margin-bottom: 2.5rem; }
 .testimonial-quote::before { content: '\201C'; } .testimonial-quote::after { content: '\201D'; }
 .testimonial-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
-
 .faq-item { border-bottom: 1px solid var(--gray-line); }
 .faq-question { width: 100%; background: none; border: none; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--black); text-align: left; gap: 1rem; }
 .faq-icon { font-size: 1.2rem; font-weight: 300; flex-shrink: 0; transition: transform 0.3s; line-height: 1; }
 .faq-question.open .faq-icon { transform: rotate(45deg); }
 .faq-answer { font-size: 0.88rem; line-height: 1.88; color: var(--gray-text); max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
 .faq-answer.open { max-height: 300px; padding-bottom: 1.5rem; }
-
 .launch-banner { background: var(--black); padding: 7rem 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.06); }
 .launch-eyebrow { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
 .launch-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(5rem, 14vw, 13rem); line-height: 0.85; text-transform: uppercase; letter-spacing: -0.02em; color: var(--white); margin-bottom: 1rem; }
 .launch-date { font-family: 'Barlow Condensed', sans-serif; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 2rem; }
 .launch-body { font-size: 0.9rem; line-height: 1.85; color: rgba(255,255,255,0.4); max-width: 440px; margin: 0 auto 3rem; }
 .launch-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
 footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; margin-bottom: 4rem; }
 .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.3rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; display: block; margin-bottom: 1.2rem; }
@@ -205,45 +117,94 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .footer-bottom span, .footer-bottom a { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-decoration: none; }
 .footer-bottom a:hover { color: var(--gold); }
-
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* Direct Bookings Section */
-.direct-booking-section { background: var(--off-white); padding: 7rem 3rem; position: relative; overflow: hidden; }
-.direct-booking-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, var(--gold), transparent); }
-.fee-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 3rem 0; }
-.fee-box { padding: 2rem 2.5rem; background: var(--white); }
-.fee-box.fee-bad { background: rgba(200,50,50,0.06); border-top: 3px solid #c83232; }
-.fee-box.fee-good { background: rgba(201,168,76,0.08); border-top: 3px solid var(--gold); }
-.fee-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 0.75rem; }
-.fee-label.red { color: #c83232; }
-.fee-label.golden { color: var(--gold); }
-.fee-number { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.5rem; line-height: 1; margin-bottom: 0.5rem; }
-.fee-number.red { color: #c83232; }
-.fee-number.golden { color: var(--gold); }
-.fee-desc { font-size: 0.82rem; line-height: 1.65; color: #666; }
-.strategy-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 2rem 0; }
-.strategy-pill { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.55rem 1.1rem; border: 1px solid rgba(0,0,0,0.12); color: #333; background: var(--white); }
-.strategy-pill.highlighted { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.06); }
-
-/* ── 2-image side-by-side ── */
-.img-duo {
+.direct-booking-section {
+  background: var(--off-white);
+  padding: 7rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.direct-booking-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+.fee-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
-  height: 400px;
+  margin: 3rem 0;
 }
-.img-duo > div { overflow: hidden; }
-.img-duo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
-.img-duo > div:hover img { transform: scale(1.04); }
+.fee-box {
+  padding: 2rem 2.5rem;
+  background: var(--white);
+}
+.fee-box.fee-bad {
+  background: rgba(200,50,50,0.06);
+  border-top: 3px solid #c83232;
+}
+.fee-box.fee-good {
+  background: rgba(201,168,76,0.08);
+  border-top: 3px solid var(--gold);
+}
+.fee-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.fee-label.red { color: #c83232; }
+.fee-label.golden { color: var(--gold); }
+.fee-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.fee-number.red { color: #c83232; }
+.fee-number.golden { color: var(--gold); }
+.fee-desc {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: #666;
+}
+.strategy-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+.strategy-pill {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  color: #333;
+  background: var(--white);
+}
+.strategy-pill.highlighted {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.06);
+}
 
 @media (max-width: 960px) {
   .nav { padding: 1.2rem 1.5rem; }
   .nav-links a:not(.btn-nav) { display: none; }
   .section { padding: 5rem 1.5rem; }
-  .hero { padding: 0 1.5rem 4rem; min-height: 100vh; justify-content: flex-end; }
-  .hero-scroll-cue { right: 1.5rem; }
+  .hero { padding: 0 1.5rem; min-height: 100vh; justify-content: flex-end; padding-bottom: 4rem; }
+  .hero-bg-img { width: 100%; opacity: 0.1; mask-image: none; }
   .two-col { grid-template-columns: 1fr; gap: 3rem; }
   .three-col { grid-template-columns: 1fr; }
   .split-grid { grid-template-columns: 1fr !important; }
@@ -254,11 +215,6 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   .kg-grid { grid-template-columns: 1fr 1fr !important; }
   .fee-comparison { grid-template-columns: 1fr; }
   .direct-booking-section { padding: 5rem 1.5rem; }
-  .img-strip { grid-template-columns: 1fr; height: auto; }
-  .img-strip-item { height: 220px; }
-  .img-full { height: 280px; }
-  .img-duo { grid-template-columns: 1fr; height: auto; }
-  .img-duo > div { height: 240px; }
 }
 </style>
 </head>
@@ -273,25 +229,18 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════
-     HERO — 12019-sea-2052650.jpg full bleed
-     ══════════════════════════════════════ -->
+<!-- HERO: Light background, golden letters -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
+  <div class="hero-bg-img"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Agency AI · Villa Owners</p>
     <h1 class="hero-title">More <span class="gold">Nights.</span><br>More <span class="gold">Booked.</span></h1>
     <p class="hero-subtitle">AI content that fills your calendar — without filling your evenings with writing.</p>
     <div class="hero-divider"></div>
     <div class="hero-buttons">
-      <a href="https://calendly.com/vivaenglish79/30min" target="_blank" class="btn btn-gold">Fill My Calendar</a>
-      <a href="mailto:vivalancsweert@gmail.com" class="btn btn-ghost">Ask a Question</a>
+      <a href="https://calendly.com/vivaenglish79/30min" target="_blank" class="btn btn-black">Fill My Calendar</a>
+      <a href="mailto:vivalancsweert@gmail.com" class="btn btn-ghost-dark">Ask a Question</a>
     </div>
-  </div>
-  <div class="hero-scroll-cue">
-    <div class="hero-scroll-line"></div>
-    <span>Scroll</span>
   </div>
 </section>
 
@@ -303,9 +252,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     THE PROBLEM
-     ══════════════════════════════════════ -->
+<!-- THE PROBLEM -->
 <section class="section section-white">
   <div class="inner">
     <div class="two-col">
@@ -343,21 +290,6 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     IMAGE STRIP — hans + mandy + matthew
-     ══════════════════════════════════════ -->
-<div class="img-strip">
-  <div class="img-strip-item">
-    <img src="hans-eiskonen--RQ8tGcn2EY-unsplash.jpg" alt="Villa view" loading="lazy">
-  </div>
-  <div class="img-strip-item">
-    <img src="mandy-choi-_qZ0us4az20-unsplash.jpg" alt="Coastal living" loading="lazy">
-  </div>
-  <div class="img-strip-item">
-    <img src="matthew-brodeur-DH_u2aV3nGM-unsplash.jpg" alt="Villa lifestyle" loading="lazy">
-  </div>
-</div>
-
 <!-- PULL QUOTE -->
 <section class="section section-offwhite">
   <div class="inner-mid reveal">
@@ -365,9 +297,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     STOP PAYING AIRBNB FEES
-     ══════════════════════════════════════ -->
+<!-- ── NEW: STOP PAYING AIRBNB FEES ── -->
 <section class="direct-booking-section">
   <div class="inner">
     <div class="two-col">
@@ -421,21 +351,11 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     FULL BLEED IMAGE — wil-stewart (ocean/surf)
-     ══════════════════════════════════════ -->
-<div class="img-full">
-  <img src="wil-stewart-K_TbABnVzHo-unsplash.jpg" alt="Ocean view">
-  <div class="img-full-overlay"></div>
-</div>
-
-<!-- ══════════════════════════════════════
-     KNOWLEDGE GRAPH — gonzavespa150 sunset bg
-     ══════════════════════════════════════ -->
+<!-- KNOWLEDGE GRAPH -->
 <section class="section section-black">
   <div class="inner">
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
-      <div class="split-img reveal" style="background-image:url('gonzavespa150-sunset-8331285.jpg');min-height:520px;background-size:cover;background-position:center;"></div>
+      <div class="split-img reveal" style="background-image:url('wave.jpg');min-height:520px;background-size:cover;background-position:center;"></div>
       <div class="reveal">
         <span class="label">The Knowledge Graph</span>
         <h2 class="heading-lg" style="color:var(--white)">This isn't ChatGPT.<br>It knows your villa.</h2>
@@ -543,9 +463,7 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     AD CONTENT — kanenori sea image on right
-     ══════════════════════════════════════ -->
+<!-- AD CONTENT SECTION -->
 <section class="section section-offwhite">
   <div class="inner">
     <div class="split-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;">
@@ -567,15 +485,13 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
         </div>
         <a href="https://calendly.com/vivaenglish79/30min" target="_blank" class="btn btn-black" style="margin-top:2.5rem">Talk About Ads</a>
       </div>
-      <div class="split-img reveal" style="background-image:url('kanenori-sea-5499649.jpg');min-height:560px;background-size:cover;background-position:center;"></div>
+      <div class="split-img reveal" style="background-image:url('whale.jpg');min-height:560px;background-size:cover;background-position:center;"></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     TESTIMONIAL — wil-stewart background
-     ══════════════════════════════════════ -->
-<section class="testimonial" style="background-image:url('wil-stewart-K_TbABnVzHo-unsplash.jpg')">
+<!-- TESTIMONIAL — wave image background -->
+<section class="testimonial" style="background-image:url('wave.jpg')">
   <div class="testimonial-inner">
     <div class="testimonial-quote">September and October used to be dead months. Last year we ran automated last-minute promos for the first time and filled 60% of those nights. That alone paid for the system ten times over.</div>
     <div class="testimonial-name">Villa owner — 3 villas</div>
@@ -658,17 +574,17 @@ footer { background: var(--black); padding: 5rem 3rem 2.5rem; border-top: 1px so
 
 <script>
   const nav = document.getElementById('mainNav');
-  // Hero is dark now, so start with dark nav
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
       nav.classList.remove('light');
       nav.classList.add('dark');
     } else {
-      nav.classList.remove('light');
-      nav.classList.add('dark');
+      nav.classList.remove('dark');
+      nav.classList.add('light');
     }
   });
-  nav.classList.add('dark');
+  // Start with light nav on the light hero
+  nav.classList.add('light');
 
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
